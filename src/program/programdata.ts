@@ -1,5 +1,4 @@
-export class programdata {
-
+ class getarray{
     numbertoarray(number: any) {
         if (number.toString().split(".").length > 1) {
             number = number.toString().split(".")[0] + number.toString().split(".")[1]
@@ -8,6 +7,10 @@ export class programdata {
         }
         return number.split('').map(Number);
     }
+}
+
+
+export class programdata extends getarray {
 
     unique = (value: any, index: number, self: any) => {
         return self.indexOf(value) === index
