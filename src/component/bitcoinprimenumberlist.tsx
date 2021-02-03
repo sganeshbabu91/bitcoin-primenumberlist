@@ -3,6 +3,7 @@ import axios from "axios";
 import React from "react";
 import { Component } from "react";
 import programdata from "../program/programdata";
+import configData from "../shared/configdata.json";
 
 interface DateConstructor {
     fromDate: Date,
@@ -30,27 +31,33 @@ export class Bitcoinprimenumberlist extends Component<props, DateConstructor>{
 
         console.log(props.data)
         
+        //class instance
         this.callClass = new programdata();
         this.handleChangefrom = this.handleChangefrom.bind(this);
         this.handleChangeto = this.handleChangeto.bind(this);
+        //calling below method to show list
         this.GetbitcoinList();
 
     }
 
+    //date change event to set from date
     private handleChangefrom(date: any) {
         this.setState({
             fromDate: date.target.value,
         });
     }
 
+    //date change event to set to date
     private handleChangeto(date: any) {
         this.setState({
             toDate: date.target.value,
         });
     }
 
+    //call when user click on go button 
+    //used to fetch bit coin price and prime numbers
     GetbitcoinList = async () => {
-        let url = "https://api.coindesk.com/v1/bpi/historical/close.json";
+        let url =  configData.BITCOIN_API_URL ;//bit coin url we get from config file
         let input = {
             'start': this.state.fromDate,
             'end': this.state.toDate
@@ -69,9 +76,11 @@ export class Bitcoinprimenumberlist extends Component<props, DateConstructor>{
         });
 
         this.setState({
-            rowsdata: datalist,
+            rowsdata: datalist, // setting data list to render in html
         });
     }
+
+    //html code section to render
 
     render() {
         const { fromDate } = this.state.fromDate;
