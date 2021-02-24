@@ -12,7 +12,7 @@ class App extends Component {
       <br />
       <AppBar position="static" color="inherit" >
       <Typography variant="h3" align="center" style={{backgroundColor : "#3f51b5" , color:"white"}} >
-        Bit Coin Price List
+        Bit Coin Price List from github
       </Typography>
       </AppBar>
       <Bitcoinprimenumberlist  data ={randomQuotes}/>
